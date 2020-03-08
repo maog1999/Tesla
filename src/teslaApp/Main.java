@@ -18,6 +18,9 @@ String textValue = "";
 String registro;
 String na;
 String Use;
+String ema;
+String pass;
+String copass;
 
 	int pantalla ;
 
@@ -104,7 +107,7 @@ public void mouseClicked() {
 		getInfoForm();
 		if(mouseX>82 && mouseX<145 && mouseY>575 && mouseY<612) {
 			pantalla=1;//para pasar al login
-			cp5.get(Textfield.class,"name").setVisible(false);
+			//cp5.get(Textfield.class,"name").setVisible(false);
 		}else if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
 			pantalla=2;//para pasar al register
 		}
@@ -112,8 +115,8 @@ public void mouseClicked() {
 	case 1:
 		if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
 			pantalla=0;
-			cp5.get(Textfield.class,"name").setVisible(true);
-			cp5.get(Textfield.class,"name").clear();
+			//cp5.get(Textfield.class,"name").setVisible(true);
+		//	cp5.get(Textfield.class,"name").clear();
 		}
 	case 2:
 		if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
@@ -125,10 +128,25 @@ public void mouseClicked() {
 }
 
 public void cargaP5() {
+	
 	//inicializacion librerias
+	/*for (int i = 0; i < ensayo.length; i++) {
+	cp5 = new ControlP5(this);
+	cp5.addTextfield(ensayo[i])
+	.setPosition(51,280+(i*80))
+	.setSize(200,40)
+	.setFocus(true)
+	.setFont(font)
+	.setColor(color(255))
+	.setColorBackground(color(38,38,38)) 
+	.setAutoClear(false) 
+	.setCaptionLabel("")
+	.setColorActive(color(38,38,38));
+	System.out.println(ensayo[i]);
+	}*/
 	cp5 = new ControlP5(this);
 	cp5.addTextfield("name")
-	.setPosition(50,280)
+	.setPosition(50,100)
 	.setSize(200,40)
 	.setFocus(true)
 	.setFont(font)
@@ -139,7 +157,40 @@ public void cargaP5() {
 	.setColorActive(color(38,38,38));
 	
 	cp5.addTextfield("username")
+	.setPosition(50,200)
+	.setSize(200,40)
+	.setFocus(true)
+	.setFont(font)
+	.setColor(color(255))
+	.setColorBackground(color(38,38,38)) 
+	.setAutoClear(false) 
+	.setCaptionLabel("")
+	.setColorActive(color(38,38,38));
+	
+	cp5.addTextfield("email")
+	.setPosition(50,300)
+	.setSize(200,40)
+	.setFocus(true)
+	.setFont(font)
+	.setColor(color(255))
+	.setColorBackground(color(38,38,38)) 
+	.setAutoClear(false) 
+	.setCaptionLabel("")
+	.setColorActive(color(38,38,38));
+	
+	cp5.addTextfield("password")
 	.setPosition(50,400)
+	.setSize(200,40)
+	.setFocus(true)
+	.setFont(font)
+	.setColor(color(255))
+	.setColorBackground(color(38,38,38)) 
+	.setAutoClear(false) 
+	.setCaptionLabel("")
+	.setColorActive(color(38,38,38));
+	
+	cp5.addTextfield("confirmPassword")
+	.setPosition(50,500)
 	.setSize(200,40)
 	.setFocus(true)
 	.setFont(font)
@@ -158,11 +209,11 @@ public void cargaP5() {
 	.setColorForeground(color(0,0,0,30))
 	.setSize(414,79);
 }
-public void input (String Thetext) {
+/*public void input (String Thetext) {
 	ensayo[0] = Thetext;
 	//System.out.println("entro : "+Thetext);
 	System.out.println(ensayo[0]+"ay papi");
-}
+}*/
 
 /*public void submit() {
 	registro=cp5.get(Textfield.class,"input").getText();
@@ -175,11 +226,27 @@ public void getInfoForm() {
 		ensayo [0] = na;
 		Use = cp5.get(Textfield.class, "username").getText();
 		ensayo [1] = Use;
+		ema = cp5.get(Textfield.class, "email").getText();
+		ensayo[2] = ema;
+		pass = cp5.get(Textfield.class, "password").getText();
+		ensayo[3] = pass;
+		copass = cp5.get(Textfield.class, "confirmPassword").getText();
+		ensayo[4] = copass;
 		
-		usu.add(new Usuario(na,Use,"hola","ho"));
+		/*System.out.println(ensayo[0]+"epa1");
+		System.out.println(ensayo[1]+"epa2");
+		System.out.println(ensayo[2]+"epa3");
+		System.out.println(ensayo[3]+"epa4");
+		System.out.println(ensayo[4]+"epa5");*/
+		
+		//if(pass.equals(copass)) {
+		usu.add(new Usuario(na,Use,ema,pass));
+	//	}
 		for (int i = 0; i < usu.size(); i++) {
-			System.out.println(usu.get(i).getUsername()+"epa");
-			System.out.println(usu.get(i).getPassword()+"epa2");
+			System.out.println(usu.get(i).getName()+"nombre");
+			System.out.println(usu.get(i).getUsername()+"user");
+			System.out.println(usu.get(i).getEmail()+"email");
+			System.out.println(usu.get(i).getPassword()+"pass");
 		}
 		 
 				
