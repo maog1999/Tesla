@@ -70,6 +70,7 @@ public void setup() {
 	.setCaptionLabel("")
 	.setColorActive(color(38,38,38));
 	
+	//botones
 	cp5.addBang("submit")
 	.setPosition(0,817)
 	.setColorBackground(color(255,255,255,1))
@@ -96,9 +97,11 @@ public void draw() {
 	switch(pantalla) {
 	case 0: //pantalla principal
 		image(pantalla1,0,0);
+		
 	break;
 	case 1://pantalla de logearse
 		image(pantallaLog,0,0);
+		
 	break;
 	case 2://pantalla para registrarse
 		image(pantallaReg,0,0);
@@ -110,6 +113,7 @@ public void mouseClicked() {
 	case 0:
 		if(mouseX>82 && mouseX<145 && mouseY>575 && mouseY<612) {
 			pantalla=1;//para pasar al login
+			cp5.get(Textfield.class,"input").setVisible(false);
 		}else if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
 			pantalla=2;//para pasar al register
 		}
@@ -117,6 +121,8 @@ public void mouseClicked() {
 	case 1:
 		if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
 			pantalla=0;
+			cp5.get(Textfield.class,"input").setVisible(true);
+			cp5.get(Textfield.class,"input").clear();
 		}
 	case 2:
 		if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
