@@ -32,6 +32,19 @@ PImage pantallaWel;
 PImage pantallaMx;
 PImage pantallaMs;
 PImage pantallaM3;
+PImage orderX;
+PImage orderS;
+PImage order3;
+PImage compX;
+PImage compS;
+PImage comp3;
+PImage paX;
+PImage paS;
+PImage pa3;
+PImage thaX;
+PImage thaS;
+PImage tha3;
+
 
 //variables botones
 boolean boton1 = false;
@@ -71,6 +84,18 @@ public void setup() {
 	pantallaMx=loadImage("images/modelx.png");
 	pantallaMs=loadImage("images/models.png");
 	pantallaM3=loadImage("images/model3.png");
+	orderX=loadImage("images/orderX.png");
+	orderS=loadImage("images/orderS.png");
+	order3=loadImage("images/order3.png");
+	compX=loadImage("images/compareX.png");
+	compS=loadImage("images/compareS.png");
+	comp3=loadImage("images/compare3.png");
+	paX=loadImage("images/payX.png");
+	paS=loadImage("images/payS.png");
+	pa3=loadImage("images/pay3.png");
+	thaX=loadImage("images/thankX.png");
+	thaS=loadImage("images/thankS.png");
+	tha3=loadImage("images/thank3.png");
 	
 	//metodo para cargar los botones y cuadros de texto
 	cargaP5();
@@ -124,6 +149,79 @@ public void draw() {
 		image(pantallaM3, 0, 0);
 		ocultarInputs();
 		break;
+case 7://pantalla ordenar mX
+		image(orderX, 0, 0);
+		ocultarInputs();
+		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
+
+		break;
+		
+	case 8://pantalla ordenar mS
+		image(orderS, 0, 0);
+		ocultarInputs();
+		break;
+		
+	case 9://pantalla ordenar m3
+		image(order3, 0, 0);
+		ocultarInputs();
+		break;
+		
+	case 10://pantalla compararX
+		image(compX, 0, 0);
+		ocultarInputs();
+		break;
+		
+	case 11://pantalla compararS
+		image(compS, 0, 0);
+		ocultarInputs();
+		break;
+		
+	case 12://pantalla comparar3
+		image(comp3, 0, 0);
+		ocultarInputs();
+		break;
+	case 13://pantalla pagoX
+		image(paX, 0, 0);
+		ocultarInputs();
+		break;
+	
+	case 14://pantalla pagoS
+		image(paS, 0, 0);
+		ocultarInputs();
+		break;
+		
+	case 15://pantalla pago3
+		image(pa3, 0, 0);
+		ocultarInputs();
+		break;
+	
+	case 16://pantalla thxX
+		image(thaX, 0, 0);
+		ocultarInputs();
+		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
+		break;
+		
+	case 17://pantalla thxS
+		image(thaS, 0, 0);
+		ocultarInputs();
+		break;
+
+	case 18://pantalla thx3
+		image(tha3, 0, 0);
+		ocultarInputs();
+		break;
+	
+	case 19://pantalla grafica X
+		
+		break;
+		
+	case 20://pantalla grafica S
+		
+		break;
+		
+	case 21://pantalla grafica 3
+		
+		break;
 	}
 }
 public void mouseClicked() {
@@ -171,7 +269,7 @@ public void mouseClicked() {
 		break;
 	case 4://pantalla Home(modelX)
 		if(mouseX>105 && mouseX<310 && mouseY>802 && mouseY<842) {
-			
+			pantalla=7;//pantalla de ordenar X
 		}if(mouseX>345 && mouseX<414 && mouseY>370 && mouseY<474) {
 			pantalla=5;//para pasar a modelS
 			
@@ -180,7 +278,7 @@ public void mouseClicked() {
 		break;
 	case 5://pantalla modelS
 		if(mouseX>105 && mouseX<310 && mouseY>802 && mouseY<842) {
-			
+			pantalla=8;//pantalla de ordenar S
 		}if(mouseX>345 && mouseX<414 && mouseY>370 && mouseY<474) {
 			pantalla=6;//para pasar a model3
 		}if(mouseX>0 && mouseX<68 && mouseY>370 && mouseY<474) {
@@ -190,14 +288,133 @@ public void mouseClicked() {
 		break;
 	case 6://pantalla model3
 		if(mouseX>105 && mouseX<310 && mouseY>802 && mouseY<842) {
-			
+			pantalla=9;//pantalla de ordenar3
 		}if(mouseX>0 && mouseX<68 && mouseY>370 && mouseY<474) {
 			pantalla=5;//para devolverse a modelS
 			
 		}
 		
 		break;
+	case 7://pantalla ordenarX
+		if(mouseX>12 && mouseX<76 && mouseY>12 && mouseY<85) {
+			pantalla=4;//devolverse al homeX
+		}if(mouseX>116 && mouseX<298 && mouseY>16 && mouseY<72) {
+			pantalla=4;//devolverse al homeX
+		}if(mouseX>47 && mouseX<182 && mouseY>812 && mouseY<846) {
+			pantalla=10;//pantalla compararX
+		}if(mouseX>227 && mouseX<362 && mouseY>812 && mouseY<846) {
+			pantalla=13;//pantalla pagoX
+		}
+		break;
 		
+	case 8: //pantalla ordenarS
+		if(mouseX>12 && mouseX<76 && mouseY>12 && mouseY<85) {
+			pantalla=5;//devolverse al homeS
+		}if(mouseX>116 && mouseX<298 && mouseY>16 && mouseY<72) {
+			pantalla=4;//devolverse al homeX
+		}if(mouseX>47 && mouseX<182 && mouseY>812 && mouseY<846) {
+			pantalla=11;//pantalla compararS
+		}if(mouseX>227 && mouseX<362 && mouseY>812 && mouseY<846) {
+			pantalla=14;//pantalla pagoS
+		}
+		break;
+		
+	case 9://pantalla ordenar3
+		if(mouseX>12 && mouseX<76 && mouseY>12 && mouseY<85) {
+			pantalla=6;//devolverse al home3
+		}if(mouseX>116 && mouseX<298 && mouseY>16 && mouseY<72) {
+			pantalla=4;//devolverse al homeX
+		}if(mouseX>47 && mouseX<182 && mouseY>812 && mouseY<846) {
+			pantalla=12;//pantalla comparar3
+		}if(mouseX>227 && mouseX<362 && mouseY>812 && mouseY<846) {
+			pantalla=15;//pantalla pago3
+		}
+		break;
+		
+	case 10://pantalla compararX
+		if(mouseX>103 && mouseX<312 && mouseY>808 && mouseY<846) {
+		pantalla=19;
+		}if(mouseX>12 && mouseX<76 && mouseY>12 && mouseY<85) {
+			pantalla=7;
+		}
+		break;
+		
+	case 11://pantalla compararS
+		if(mouseX>103 && mouseX<312 && mouseY>808 && mouseY<846) {
+			pantalla=20;
+		}if(mouseX>12 && mouseX<76 && mouseY>12 && mouseY<85) {
+				pantalla=8;
+			}
+		break;
+		
+	case 12://pantalla comparar3
+		if(mouseX>103 && mouseX<312 && mouseY>808 && mouseY<846) {
+			pantalla=21;
+			}if(mouseX>12 && mouseX<76 && mouseY>12 && mouseY<85) {
+				pantalla=9;
+			}
+		break;
+		
+	case 13://pantalla pagoX
+		if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
+			pantalla=16;
+			}if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
+			pantalla=7;
+			}
+		break;
+	
+	case 14://pantalla pagoS
+		if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
+			pantalla=17;
+			}if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
+			pantalla=8;
+			}
+		break;
+		
+	case 15://pantalla pago3
+		if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
+			pantalla=16;
+			}if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
+			pantalla=7;
+			}
+		break;
+	
+	case 16://pantalla thxX
+		if(mouseX>44 && mouseX<200 && mouseY>15 && mouseY<70) {
+			pantalla=4;
+		}if(mouseX>103 && mouseX<312 && mouseY>778 && mouseY<813) {
+			pantalla=4;
+			}
+		break;
+		
+	case 17://pantalla thxS
+		if(mouseX>44 && mouseX<200 && mouseY>15 && mouseY<70) {
+			pantalla=4;
+		}if(mouseX>103 && mouseX<312 && mouseY>778 && mouseY<813) {
+			pantalla=4;
+			}
+		break;
+
+	case 18://pantalla thx3
+		if(mouseX>44 && mouseX<200 && mouseY>15 && mouseY<70) {
+			pantalla=4;
+		}if(mouseX>103 && mouseX<312 && mouseY>778 && mouseY<813) {
+			pantalla=4;
+			}
+		break;
+	
+	case 19://pantalla grafica X
+		
+		break;
+		
+	case 20://pantalla grafica S
+		
+		break;
+		
+	case 21://pantalla grafica 3
+		
+		break;
+	
 	
 }
 	getInfoForm();
