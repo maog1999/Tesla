@@ -36,6 +36,7 @@ String cv;
 String m;
 String adre;
 
+// ints para las animaciones y pantallas
 int pantalla ;
 int contador=1;
 int contador2=1;
@@ -79,13 +80,14 @@ PImage tres;
 
 //variables botones
 int registrarse;
-int veriLog=1;
+//variables fuentes
 private PFont font;
 private PFont font2;
 private PFont font3;
 private PFont font4;
 private PFont font5;
 private PFont font6;
+//boolean para las animaciones
 boolean ani1 = false;
 boolean ani2 = false;
 boolean ani3 = false;
@@ -152,15 +154,6 @@ public void setup() {
 	//metodo para cargar los botones y cuadros de texto
 	cargaP5();
 	
-	
-	//.setStringValue(String)
-	//.keepFocus(true)
-	
-	/*ensayo [0]= cp5.get(Textfield.class,"input").getText();
-			System.out.println(ensayo[0]);
-	*/
-	/*ensayo[0]= cp5.get(Textfield.class,"input").getText();
-	System.out.println("ayy papi" + ensayo[0]);*/
 }
 public void draw() {
 	background(38,38,38);
@@ -169,10 +162,7 @@ public void draw() {
 	
 	switch(pantalla) {
 	case 0: //pantalla principal
-		/*for(int i=1;intro.length;i++) {
-		image(intro[i],0,0);
-		}*/
-		
+			
 		image(intro[contador], 0, 0);
 		if(frameCount %2==0) {
 			contador++;
@@ -185,12 +175,8 @@ public void draw() {
 	break;
 	case 1://pantalla de logearse
 		image(pantallaLog,0,0);
-		/*if(veriLog==2) {
-			image(wronLog, 0, 0);
-		}else {
-			image(pantallaLog,0,0);
-		}*/
-		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
+
+		//text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
 		ocultarInputs2();
 		cp5.get(Textfield.class,"password2").setVisible(true);
 		cp5.get(Textfield.class,"username2").setVisible(true);
@@ -204,7 +190,7 @@ public void draw() {
 		}else {
 			image(pantallaReg,0,0);
 		}
-		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
+		//text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
 	break;
 	case 3://pantalla de bienvenida al Usuario
 		image(pantallaWel,0,0);
@@ -214,7 +200,7 @@ public void draw() {
 		break;
 	case 4://pantalla Home -->modeloX
 		if(ani1==true) {
-			System.out.println("SII");
+			//System.out.println("SII");
 		image(homeX[contador2], 0, 0);
 		if(frameCount %2==0) {
 			contador2++;
@@ -224,7 +210,7 @@ public void draw() {
 		}
 		}
 		ocultarInputs();
-		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
+		//text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
 		break;
 	case 5://pantalla modeloS
 		if(ani2==true) {
@@ -236,7 +222,7 @@ public void draw() {
 			}
 		}
 		}
-		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
+		//text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
 
 		ocultarInputs();
 		break;
@@ -261,7 +247,7 @@ case 7://pantalla ordenar mX
 		}
 		
 		ocultarInputs();
-		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
+		//text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
 
 		break;
 		
@@ -288,7 +274,7 @@ case 7://pantalla ordenar mX
 	case 10://pantalla compararX
 		image(compX, 0, 0);
 		ocultarInputs();
-		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
+		//text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
 		break;
 		
 	case 11://pantalla compararS
@@ -450,7 +436,7 @@ case 7://pantalla ordenar mX
 			text(cp5.get(Textfield.class, "adress").getText() ,173,185);
 			text("$39,990" ,316,227);
 		}
-		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
+		//text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
 
 		ocultarInputs();
 		break;
@@ -608,7 +594,7 @@ public void mouseClicked() {
 			pantalla=8;//pantalla de ordenar S
 			carritos.add(new ModelS("Long Range", "2.4s 0-60mph", "348 miles", "5 adults", "163 mph", "17''", "19'' or 21''", "$79,990", this,font4));
 			for(int i=0; i<carritos.size();i++) {
-			System.out.println(carritos.get(i));
+			//System.out.println(carritos.get(i));
 			}
 		}if(mouseX>345 && mouseX<414 && mouseY>370 && mouseY<474) {
 			pantalla=6;//para pasar a model3
@@ -1213,7 +1199,7 @@ public void cargaP5() {
 }
 
 
-public void getInfoForm() {
+public void getInfoForm() {//metodo para registar a los usuarios
 	if (mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
 		na = cp5.get(Textfield.class, "name").getText();
 		ensayo [0] = na;
@@ -1232,25 +1218,25 @@ public void getInfoForm() {
 		System.out.println(ensayo[3]+"epa4");
 		System.out.println(ensayo[4]+"epa5");*/
 		
-		if(pass.equals(copass)) {
+		if(pass.equals(copass)) {//condicional para verificar que las contraseñas coincidan
 		usu.add(new Usuario(na,Use,ema,pass));
 		registrarse=1;
 		}else {
 			registrarse=2;
-			System.out.println("mala");
+			//System.out.println("mala");
 		}
-		for (int i = 0; i < usu.size(); i++) {
+		/*for (int i = 0; i < usu.size(); i++) {
 			System.out.println(usu.get(i).getName()+" nombre");
 			System.out.println(usu.get(i).getUsername()+" user");
 			System.out.println(usu.get(i).getEmail()+" email");
 			System.out.println(usu.get(i).getPassword()+" pass");
-		}
+		}*/
 		 
 				
 	}
 }
 
-public void getInfoTarjeta() {
+public void getInfoTarjeta() {//metodo para registrar los datos de la tarjeta
 	if (mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
 		nC = cp5.get(Textfield.class, "nameCard").getText();
 		tarjeta [0] = nC;
@@ -1278,12 +1264,12 @@ public void getInfoTarjeta() {
 }*/
 	}
 }
-public void logearse() { 
-	System.out.println(cp5.get(Textfield.class, "username2").getText()+" nf");
+public void logearse() { //metodo que verifica si el username y contraseña coinciden con las que se registró
+	//System.out.println(cp5.get(Textfield.class, "username2").getText()+" nf");
 	if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
 	if(cp5.get(Textfield.class, "username2").getText().equals(Use) && cp5.get(Textfield.class, "password2").getText().equals(pass)) {
 		
-		System.out.println("entro");
+		//System.out.println("entro");
 		pantalla=3;
 		/*veriLog=1;
 		}
