@@ -15,6 +15,9 @@ private ControlP5 cp5;
 ArrayList<Usuario> usu;
 String [] ensayo;
 PImage [] intro;
+PImage[] homeX;
+PImage [] homeS;
+PImage [] home3;
 String textValue = "";
 String registro;
 String na;
@@ -24,6 +27,10 @@ String pass;
 String copass;
 
 int pantalla ;
+int contador=1;
+int contador2=1;
+int contador3=1;
+int contador4=1;
 
 //variables de imagenes
 PImage pantalla1;
@@ -51,11 +58,12 @@ PImage wronLog;
 
 //variables botones
 int registrarse;
-int veriLog=0;
+int veriLog=1;
 private PFont font;
-/*boolean
-boolean
-*/
+boolean ani1 = false;
+boolean ani2 = false;
+boolean ani3 = false;
+
 
 	public static void main(String[] args) {
 		PApplet.main(Main.class.getName());
@@ -65,6 +73,10 @@ public void settings() {
 }
 
 public void setup() {
+	intro= new PImage[73];
+	homeX = new PImage[97];
+	homeS = new PImage[98];
+	home3 = new PImage[97];
 	pantalla = 0;
 	ensayo = new String [5];
 	
@@ -75,10 +87,23 @@ public void setup() {
 	ensayo[3] = "password";
 	ensayo[4] = "confirmPassword";
 	
-	/*for(int i=1;i<73;i++) {
-		intro[i]=loadImage("introVi/scene1 ("+i+").jpg");
-	}*/
+	for(int i=1;i<71;i++) {
+		intro[i]=loadImage("introVi/scene1"+" "+"("+i+").jpg");
+	}
 	
+	for(int i=1;i<95;i++) {
+		homeX[i]=loadImage("mX/scene"+" "+"("+i+").jpg");
+	}
+	
+	for(int i=1;i<96;i++) {
+		homeS[i]=loadImage("mS/scen"+" "+"("+i+").jpg");
+	}
+	
+	for(int i=1;i<96;i++) {
+		home3[i]=loadImage("m3/sce"+" "+"("+i+").jpg");
+	}
+	
+	//System.out.println(intro[2]);
 	font = createFont("Roboto-Regular.tff", 20);
 	
 	//arreglos de informacion
@@ -110,17 +135,24 @@ public void draw() {
 		/*for(int i=1;intro.length;i++) {
 		image(intro[i],0,0);
 		}*/
-		image(pantalla1, 0, 0);
+		
+		image(intro[contador], 0, 0);
+		if(frameCount %2==0) {
+			contador++;
+			if(contador>70) {
+				contador=70;
+			}
+		}
 		ocultarInputs();
 		
 	break;
 	case 1://pantalla de logearse
 		image(pantallaLog,0,0);
-		if(veriLog==2) {
+		/*if(veriLog==2) {
 			image(wronLog, 0, 0);
 		}else {
 			image(pantallaLog,0,0);
-		}
+		}*/
 		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
 		ocultarInputs2();
 		cp5.get(Textfield.class,"password2").setVisible(true);
@@ -142,18 +174,43 @@ public void draw() {
 		ocultarInputs();
 		break;
 	case 4://pantalla Home -->modeloX
-		image(pantallaMx, -4, 0);
+		if(ani1==true) {
+			System.out.println("SII");
+		image(homeX[contador2], 0, 0);
+		if(frameCount %2==0) {
+			contador2++;
+			if(contador2>93) {
+				contador2=93;
+			}
+		}
+		}
 		ocultarInputs();
 		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
 		break;
 	case 5://pantalla modeloS
-		image(pantallaMs, 0, 0);
+		if(ani2==true) {
+		image(homeS[contador3], 0, 0);
+		if(frameCount %2==0) {
+			contador3++;
+			if(contador3>94) {
+				contador3=94;
+			}
+		}
+		}
 		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
 
 		ocultarInputs();
 		break;
 	case 6://pantalla modelo3
-		image(pantallaM3, 0, 0);
+		if(ani3==true) {
+			image(home3[contador4], 0, 0);
+			if(frameCount %2==0) {
+				contador4++;
+				if(contador4>93) {
+					contador4=93;
+				}
+			}
+			}
 		ocultarInputs();
 		break;
 case 7://pantalla ordenar mX
@@ -272,9 +329,10 @@ public void mouseClicked() {
 		}
 		
 		break;
-	case 3:
+	case 3://pantalla bienvenida
 		if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
 			pantalla=4;//boton para continuar hacia el home (modelX)
+			ani1=true;
 		}
 
 		break;
@@ -283,7 +341,7 @@ public void mouseClicked() {
 			pantalla=7;//pantalla de ordenar X
 		}if(mouseX>345 && mouseX<414 && mouseY>370 && mouseY<474) {
 			pantalla=5;//para pasar a modelS
-			
+			ani2=true;
 		}
 		
 		break;
@@ -292,6 +350,7 @@ public void mouseClicked() {
 			pantalla=8;//pantalla de ordenar S
 		}if(mouseX>345 && mouseX<414 && mouseY>370 && mouseY<474) {
 			pantalla=6;//para pasar a model3
+			ani3=true;
 		}if(mouseX>0 && mouseX<68 && mouseY>370 && mouseY<474) {
 			pantalla=4;//para devolverse a modelX
 		}
@@ -486,6 +545,8 @@ public void limpiarInputs() {
 	cp5.get(Textfield.class,"email").clear();
 	cp5.get(Textfield.class,"password").clear();
 	cp5.get(Textfield.class,"confirmPassword").clear();
+	cp5.get(Textfield.class,"username2").clear();
+	cp5.get(Textfield.class,"password2").clear();
 }
 public void cargaP5() {
 	
@@ -515,6 +576,7 @@ public void cargaP5() {
 	.setColorBackground(color(38,38,38)) 
 	.setAutoClear(false) 
 	.setCaptionLabel("")
+	.setColorForeground(color(38,38,38,1))
 	.setColorActive(color(38,38,38));
 	
 	cp5.addTextfield("username")
@@ -526,7 +588,8 @@ public void cargaP5() {
 	.setColorBackground(color(38,38,38)) 
 	.setAutoClear(false) 
 	.setCaptionLabel("")
-	.setColorActive(color(38,38,38));
+	.setColorForeground(color(38,38,38,1))
+	.setColorActive(color(38,38,38,1));
 	
 	
 	
@@ -539,6 +602,7 @@ public void cargaP5() {
 	.setColorBackground(color(38,38,38)) 
 	.setAutoClear(false) 
 	.setCaptionLabel("")
+	.setColorForeground(color(38,38,38,1))
 	.setColorActive(color(38,38,38));
 	
 	cp5.addTextfield("password")
@@ -551,6 +615,7 @@ public void cargaP5() {
 	.setAutoClear(false) 
 	.setCaptionLabel("")
 	.setPasswordMode(true) 
+	.setColorForeground(color(38,38,38,1))
 	.setColorActive(color(38,38,38));
 	
 	cp5.addTextfield("confirmPassword")
@@ -563,6 +628,7 @@ public void cargaP5() {
 	.setAutoClear(false) 
 	.setCaptionLabel("")
 	.setPasswordMode(true) 
+	.setColorForeground(color(38,38,38,1))
 	.setColorActive(color(38,38,38));
 	
 	cp5.addTextfield("username2")
@@ -574,6 +640,7 @@ public void cargaP5() {
 	.setColorBackground(color(38,38,38)) 
 	.setAutoClear(false) 
 	.setCaptionLabel("")
+	.setColorForeground(color(38,38,38,1))
 	.setColorActive(color(38,38,38));
 	
 	cp5.addTextfield("password2")
@@ -586,6 +653,7 @@ public void cargaP5() {
 	.setAutoClear(false) 
 	.setCaptionLabel("")
 	.setPasswordMode(true) 
+	.setColorForeground(color(38,38,38,1))
 	.setColorActive(color(38,38,38));
 	
 	
@@ -636,19 +704,21 @@ public void getInfoForm() {
 				
 	}
 }
-public void logearse() {
+public void logearse() { 
+	System.out.println(cp5.get(Textfield.class, "username2").getText()+" nf");
 	if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
-		if(mouseX>0 && mouseX<414 && mouseY>0 && mouseY<896) {
-			veriLog=1;}
 	if(cp5.get(Textfield.class, "username2").getText().equals(Use) && cp5.get(Textfield.class, "password2").getText().equals(pass)) {
 		
 		System.out.println("entro");
 		pantalla=3;
+		/*veriLog=1;
 		}
 	}else {
 		veriLog=2;	
+	}*/
+	} 
 	}
-	}
+}
 
 public void infoTarjeta() {
 	
