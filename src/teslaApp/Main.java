@@ -14,6 +14,7 @@ public class Main extends PApplet {
 private ControlP5 cp5;
 ArrayList<Usuario> usu;
 String [] ensayo;
+String [] tarjeta;
 PImage [] intro;
 PImage[] homeX;
 PImage [] homeS;
@@ -25,6 +26,11 @@ String Use;
 String ema;
 String pass;
 String copass;
+String nC;
+String nnC;
+String cv;
+String m;
+String adre;
 
 int pantalla ;
 int contador=1;
@@ -60,6 +66,8 @@ PImage wronLog;
 int registrarse;
 int veriLog=1;
 private PFont font;
+private PFont font2;
+private PFont font3;
 boolean ani1 = false;
 boolean ani2 = false;
 boolean ani3 = false;
@@ -73,38 +81,35 @@ public void settings() {
 }
 
 public void setup() {
+	
+	//inicializacion de los arrelgos de imagenes
 	intro= new PImage[73];
 	homeX = new PImage[97];
 	homeS = new PImage[98];
 	home3 = new PImage[97];
-	pantalla = 0;
 	ensayo = new String [5];
+	tarjeta = new String [5];
 	
-	//arreglo
+	pantalla = 0;
+	
+	//arreglo infoUsuario
 	ensayo[0] = "name";
 	ensayo[1] = "username";
 	ensayo[2] = "email";
 	ensayo[3] = "password";
 	ensayo[4] = "confirmPassword";
 	
-	for(int i=1;i<71;i++) {
-		intro[i]=loadImage("introVi/scene1"+" "+"("+i+").jpg");
-	}
+	//arreglo infoTarjeta
+	tarjeta[0] = "naCard";
+	tarjeta[1] = "nuCard";
+	tarjeta[2] = "cvv";
+	tarjeta[3] = "mm";
+	tarjeta[4] = "adress";
 	
-	for(int i=1;i<95;i++) {
-		homeX[i]=loadImage("mX/scene"+" "+"("+i+").jpg");
-	}
-	
-	for(int i=1;i<96;i++) {
-		homeS[i]=loadImage("mS/scen"+" "+"("+i+").jpg");
-	}
-	
-	for(int i=1;i<96;i++) {
-		home3[i]=loadImage("m3/sce"+" "+"("+i+").jpg");
-	}
-	
-	//System.out.println(intro[2]);
+	//lugar para cargar las fuentes
 	font = createFont("Roboto-Regular.tff", 20);
+	font2 = createFont("Roboto-Medium.tff", 22);
+	font3 = createFont("Roboto-Regular.tff", 14);
 	
 	//arreglos de informacion
 	usu = new ArrayList <Usuario>();
@@ -171,6 +176,8 @@ public void draw() {
 	break;
 	case 3://pantalla de bienvenida al Usuario
 		image(pantallaWel,0,0);
+		textFont(font2);
+		text("Hi, " + cp5.get(Textfield.class, "name").getText(),157,469);
 		ocultarInputs();
 		break;
 	case 4://pantalla Home -->modeloX
@@ -247,32 +254,52 @@ case 7://pantalla ordenar mX
 		break;
 	case 13://pantalla pagoX
 		image(paX, 0, 0);
-		ocultarInputs();
+		ocultarInputs3();
+		cp5.get(Textfield.class,"nameCard").setVisible(true);
+		cp5.get(Textfield.class,"numberCard").setVisible(true);
+		cp5.get(Textfield.class,"cvv").setVisible(true);
+		cp5.get(Textfield.class,"mm").setVisible(true);
+		cp5.get(Textfield.class,"adress").setVisible(true);
 		break;
 	
 	case 14://pantalla pagoS
 		image(paS, 0, 0);
-		ocultarInputs();
+		ocultarInputs3();
+		cp5.get(Textfield.class,"nameCard").setVisible(true);
+		cp5.get(Textfield.class,"numberCard").setVisible(true);
+		cp5.get(Textfield.class,"cvv").setVisible(true);
+		cp5.get(Textfield.class,"mm").setVisible(true);
+		cp5.get(Textfield.class,"adress").setVisible(true);
 		break;
 		
 	case 15://pantalla pago3
 		image(pa3, 0, 0);
-		ocultarInputs();
+		ocultarInputs3();
+		cp5.get(Textfield.class,"nameCard").setVisible(true);
+		cp5.get(Textfield.class,"numberCard").setVisible(true);
+		cp5.get(Textfield.class,"cvv").setVisible(true);
+		cp5.get(Textfield.class,"mm").setVisible(true);
+		cp5.get(Textfield.class,"adress").setVisible(true);
 		break;
 	
 	case 16://pantalla thxX
 		image(thaX, 0, 0);
+		textFont(font3);
+		text(cp5.get(Textfield.class, "name").getText() + ", your order is confirmed",113,316 );
 		ocultarInputs();
-		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
 		break;
 		
 	case 17://pantalla thxS
 		image(thaS, 0, 0);
+		textFont(font3);
+		text(cp5.get(Textfield.class, "name").getText() + ", your order is confirmed",113,316 );
 		ocultarInputs();
 		break;
 
 	case 18://pantalla thx3
 		image(tha3, 0, 0);
+		textFont(font3);
+		text(cp5.get(Textfield.class, "name").getText() + ", your order is confirmed",113,316 );
 		ocultarInputs();
 		break;
 	
@@ -386,6 +413,67 @@ public void mouseClicked() {
 			pantalla=11;//pantalla compararS
 		}if(mouseX>227 && mouseX<362 && mouseY>812 && mouseY<846) {
 			pantalla=14;//pantalla pagoS
+			//En esta parte me toca sobre escribir los Inputs para poder ajustar los colores a mi interfaz
+			//y no tener que crear otros Inputs
+			cp5.addTextfield("nameCard")
+			.setPosition(50,282)
+			.setSize(200,40)
+			.setFocus(true)
+			.setFont(font)
+			.setColor(color(255))
+			.setColorBackground(color(138,3,3)) 
+			.setAutoClear(false) 
+			.setCaptionLabel("")
+			.setColorForeground(color(138,3,3,1))
+			.setColorActive(color(138,3,3));
+			
+			cp5.addTextfield("numberCard")
+			.setPosition(50,362)
+			.setSize(200,40)
+			.setFocus(false)
+			.setFont(font)
+			.setColor(color(255))
+			.setColorBackground(color(138,3,3)) 
+			.setAutoClear(false) 
+			.setCaptionLabel("")
+			.setColorForeground(color(138,3,3,1))
+			.setColorActive(color(138,3,3));
+			
+			cp5.addTextfield("cvv")
+			.setPosition(50,442)
+			.setSize(88,40)
+			.setFocus(false)
+			.setFont(font)
+			.setColor(color(255))
+			.setColorBackground(color(138,3,3)) 
+			.setAutoClear(false) 
+			.setCaptionLabel("")
+			.setColorForeground(color(138,3,3,1))
+			.setColorActive(color(138,3,3));
+			
+			cp5.addTextfield("mm")
+			.setPosition(181,442)
+			.setSize(88,40)
+			.setFocus(false)
+			.setFont(font)
+			.setColor(color(255))
+			.setColorBackground(color(138,3,3)) 
+			.setAutoClear(false) 
+			.setCaptionLabel("")
+			.setColorForeground(color(138,3,3,1))
+			.setColorActive(color(138,3,3));
+			
+			cp5.addTextfield("adress")
+			.setPosition(50,522)
+			.setSize(200,40)
+			.setFocus(false)
+			.setFont(font)
+			.setColor(color(255))
+			.setColorBackground(color(138,3,3)) 
+			.setAutoClear(false) 
+			.setCaptionLabel("")
+			.setColorForeground(color(138,3,3,1))
+			.setColorActive(color(138,3,3));
 		}
 		break;
 		
@@ -430,26 +518,35 @@ public void mouseClicked() {
 		break;
 		
 	case 13://pantalla pagoX
+		getInfoTarjeta();
 		if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
 			pantalla=16;
+			mostrarInputs2();
 			}if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
 			pantalla=7;
+			limpiarInputs();
 			}
 		break;
 	
 	case 14://pantalla pagoS
+		getInfoTarjeta();
 		if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
 			pantalla=17;
+			mostrarInputs2();
 			}if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
 			pantalla=8;
+			limpiarInputs();
 			}
 		break;
 		
 	case 15://pantalla pago3
+		getInfoTarjeta();
 		if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
 			pantalla=16;
+			mostrarInputs2();
 			}if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
 			pantalla=7;
+			limpiarInputs();
 			}
 		break;
 	
@@ -515,6 +612,22 @@ public void cargaImagenes() {
 	tha3=loadImage("images/thank3.png");
 	passWr=loadImage("images/pantallaWrong.png");
 	wronLog=loadImage("images/wrongLog.png");
+	
+	for(int i=1;i<71;i++) {
+		intro[i]=loadImage("introVi/scene1"+" "+"("+i+").jpg");
+	}
+	
+	for(int i=1;i<95;i++) {
+		homeX[i]=loadImage("mX/scene"+" "+"("+i+").jpg");
+	}
+	
+	for(int i=1;i<96;i++) {
+		homeS[i]=loadImage("mS/scen"+" "+"("+i+").jpg");
+	}
+	
+	for(int i=1;i<96;i++) {
+		home3[i]=loadImage("m3/sce"+" "+"("+i+").jpg");
+	}
 }
 public void mostrarInputs() {
 	cp5.get(Textfield.class,"name").setVisible(true);
@@ -522,6 +635,13 @@ public void mostrarInputs() {
 	cp5.get(Textfield.class,"email").setVisible(true);
 	cp5.get(Textfield.class,"password").setVisible(true);
 	cp5.get(Textfield.class,"confirmPassword").setVisible(true);
+}
+public void mostrarInputs2() {
+	cp5.get(Textfield.class,"nameCard").setVisible(true);
+	cp5.get(Textfield.class,"numberCard").setVisible(true);
+	cp5.get(Textfield.class,"cvv").setVisible(true);
+	cp5.get(Textfield.class,"mm").setVisible(true);
+	cp5.get(Textfield.class,"adress").setVisible(true);
 }
 public void ocultarInputs() {
 	cp5.get(Textfield.class,"name").setVisible(false);
@@ -531,6 +651,11 @@ public void ocultarInputs() {
 	cp5.get(Textfield.class,"confirmPassword").setVisible(false);
 	cp5.get(Textfield.class,"username2").setVisible(false);
 	cp5.get(Textfield.class,"password2").setVisible(false);
+	cp5.get(Textfield.class,"nameCard").setVisible(false);
+	cp5.get(Textfield.class,"numberCard").setVisible(false);
+	cp5.get(Textfield.class,"cvv").setVisible(false);
+	cp5.get(Textfield.class,"mm").setVisible(false);
+	cp5.get(Textfield.class,"adress").setVisible(false);
 }
 public void ocultarInputs2() {
 	cp5.get(Textfield.class,"name").setVisible(false);
@@ -538,6 +663,20 @@ public void ocultarInputs2() {
 	cp5.get(Textfield.class,"email").setVisible(false);
 	cp5.get(Textfield.class,"password").setVisible(false);
 	cp5.get(Textfield.class,"confirmPassword").setVisible(false);
+	cp5.get(Textfield.class,"nameCard").setVisible(false);
+	cp5.get(Textfield.class,"numberCard").setVisible(false);
+	cp5.get(Textfield.class,"cvv").setVisible(false);
+	cp5.get(Textfield.class,"mm").setVisible(false);
+	cp5.get(Textfield.class,"adress").setVisible(false);
+}
+public void ocultarInputs3() {
+	cp5.get(Textfield.class,"name").setVisible(false);
+	cp5.get(Textfield.class,"username").setVisible(false);
+	cp5.get(Textfield.class,"email").setVisible(false);
+	cp5.get(Textfield.class,"password").setVisible(false);
+	cp5.get(Textfield.class,"confirmPassword").setVisible(false);
+	cp5.get(Textfield.class,"username2").setVisible(false);
+	cp5.get(Textfield.class,"password2").setVisible(false);
 }
 public void limpiarInputs() {
 	cp5.get(Textfield.class,"name").clear();
@@ -547,25 +686,16 @@ public void limpiarInputs() {
 	cp5.get(Textfield.class,"confirmPassword").clear();
 	cp5.get(Textfield.class,"username2").clear();
 	cp5.get(Textfield.class,"password2").clear();
+	cp5.get(Textfield.class,"nameCard").clear();
+	cp5.get(Textfield.class,"numberCard").clear();
+	cp5.get(Textfield.class,"cvv").clear();
+	cp5.get(Textfield.class,"mm").clear();
+	cp5.get(Textfield.class,"adress").clear();
 }
 public void cargaP5() {
 	
 	//inicializacion librerias
 	
-	/*for (int i = 0; i < ensayo.length; i++) {
-	cp5 = new ControlP5(this);
-	cp5.addTextfield(ensayo[i])
-	.setPosition(51,280+(i*80))
-	.setSize(200,40)
-	.setFocus(true)
-	.setFont(font)
-	.setColor(color(255))
-	.setColorBackground(color(38,38,38)) 
-	.setAutoClear(false) 
-	.setCaptionLabel("")
-	.setColorActive(color(38,38,38));
-	System.out.println(ensayo[i]);
-	}*/
 	cp5 = new ControlP5(this);
 	cp5.addTextfield("name")
 	.setPosition(50,282)
@@ -590,8 +720,6 @@ public void cargaP5() {
 	.setCaptionLabel("")
 	.setColorForeground(color(38,38,38,1))
 	.setColorActive(color(38,38,38,1));
-	
-	
 	
 	cp5.addTextfield("email")
 	.setPosition(50,442)
@@ -657,14 +785,75 @@ public void cargaP5() {
 	.setColorActive(color(38,38,38));
 	
 	
+	//Inputs de la tarjeta
+	cp5.addTextfield("nameCard")
+	.setPosition(50,282)
+	.setSize(200,40)
+	.setFocus(true)
+	.setFont(font)
+	.setColor(color(255))
+	.setColorBackground(color(38,38,38)) 
+	.setAutoClear(false) 
+	.setCaptionLabel("")
+	.setColorForeground(color(38,38,38,1))
+	.setColorActive(color(38,38,38));
+	
+	cp5.addTextfield("numberCard")
+	.setPosition(50,362)
+	.setSize(188,40)
+	.setFocus(true)
+	.setFont(font)
+	.setColor(color(255))
+	.setColorBackground(color(38,38,38)) 
+	.setAutoClear(false) 
+	.setCaptionLabel("")
+	.setColorForeground(color(38,38,38,1))
+	.setColorActive(color(38,38,38));
+	
+	cp5.addTextfield("cvv")
+	.setPosition(50,442)
+	.setSize(88,40)
+	.setFocus(true)
+	.setFont(font)
+	.setColor(color(255))
+	.setColorBackground(color(38,38,38)) 
+	.setAutoClear(false) 
+	.setCaptionLabel("") 
+	.setColorForeground(color(38,38,38,1))
+	.setColorActive(color(38,38,38));
+	
+	cp5.addTextfield("mm")
+	.setPosition(181,442)
+	.setSize(88,40)
+	.setFocus(true)
+	.setFont(font)
+	.setColor(color(255))
+	.setColorBackground(color(38,38,38)) 
+	.setAutoClear(false) 
+	.setCaptionLabel("")
+	.setColorForeground(color(38,38,38,1))
+	.setColorActive(color(38,38,38));
+	
+	cp5.addTextfield("adress")
+	.setPosition(50,522)
+	.setSize(200,40)
+	.setFocus(true)
+	.setFont(font)
+	.setColor(color(255))
+	.setColorBackground(color(38,38,38)) 
+	.setAutoClear(false) 
+	.setCaptionLabel("")
+	.setColorForeground(color(38,38,38,1))
+	.setColorActive(color(38,38,38));
+	
 	//botones
-	cp5.addBang("submit")
+	/*cp5.addBang("submit")
 	.setPosition(0,817)
 	.setColorBackground(color(255,255,255,1))
 	.setColorActive(color(255,255,255,1))
 	.setColorValue(color(255,255,255,1))
 	.setColorForeground(color(0,0,0,30))
-	.setSize(414,79);
+	.setSize(414,79);*/
 }
 
 
@@ -704,6 +893,35 @@ public void getInfoForm() {
 				
 	}
 }
+
+public void getInfoTarjeta() {
+	if (mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
+		nC = cp5.get(Textfield.class, "nameCard").getText();
+		tarjeta [0] = nC;
+		nnC = cp5.get(Textfield.class, "numberCard").getText();
+		tarjeta [1] = nnC;
+		cv = cp5.get(Textfield.class, "cvv").getText();
+		tarjeta[2] = cv;
+		m = cp5.get(Textfield.class, "mm").getText();
+		tarjeta[3] = m;
+		adre = cp5.get(Textfield.class, "adress").getText();
+		tarjeta[4] = adre;
+		
+		/*System.out.println(tarjeta[0]+"epa1");
+		System.out.println(tarjeta[1]+"epa2");
+		System.out.println(tarjeta[2]+"epa3");
+		System.out.println(tarjeta[3]+"epa4");
+		System.out.println(tarjeta[4]+"epa5");*/
+		
+		for(int i = 0; i < usu.size(); i++) {
+			usu.get(i).registroTarjeta(nC, nnC, cv, m, adre);
+		}
+		/*for (int i = 0; i < usu.size(); i++) {
+			System.out.println(usu.get(i).getTarjetaCredito());
+			
+}*/
+	}
+}
 public void logearse() { 
 	System.out.println(cp5.get(Textfield.class, "username2").getText()+" nf");
 	if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
@@ -718,10 +936,6 @@ public void logearse() {
 	}*/
 	} 
 	}
-}
-
-public void infoTarjeta() {
-	
 }
 
 

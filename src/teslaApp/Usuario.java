@@ -2,12 +2,24 @@ package teslaApp;
 
 public  class Usuario {
 	private String name,username,email,password; 
-		
+	private Tarjeta tarjetaCredito;	
 	public Usuario(String Name, String Username, String Email,String Password) {
 		name = Name;
 		username = Username;
 		email = Email;
 		password = Password;
+	}
+	
+	public void registroTarjeta (String NombreT,String NumeroT,String CVV,String Mmyy,String Adress) {
+		tarjetaCredito = new Tarjeta(NombreT, NumeroT, CVV, Mmyy, Adress);
+	}
+
+	public Tarjeta getTarjetaCredito() {
+		return tarjetaCredito;
+	}
+
+	public void setTarjetaCredito(Tarjeta tarjetaCredito) {
+		this.tarjetaCredito = tarjetaCredito;
 	}
 
 	public String getName() {
