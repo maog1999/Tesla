@@ -13,6 +13,7 @@ public class Main extends PApplet {
 //variable librerias 
 private ControlP5 cp5;
 ArrayList<Usuario> usu;
+ArrayList<Carro> carritos;
 String [] ensayo;
 String [] tarjeta;
 PImage [] intro;
@@ -68,6 +69,7 @@ int veriLog=1;
 private PFont font;
 private PFont font2;
 private PFont font3;
+private PFont font4;
 boolean ani1 = false;
 boolean ani2 = false;
 boolean ani3 = false;
@@ -106,13 +108,16 @@ public void setup() {
 	tarjeta[3] = "mm";
 	tarjeta[4] = "adress";
 	
+	
 	//lugar para cargar las fuentes
 	font = createFont("Roboto-Regular.tff", 20);
 	font2 = createFont("Roboto-Medium.tff", 22);
 	font3 = createFont("Roboto-Regular.tff", 14);
+	font4 = createFont("Roboto-Light.tff", 18);	
 	
 	//arreglos de informacion
 	usu = new ArrayList <Usuario>();
+	carritos = new ArrayList <Carro>();
 	
 	//metodo para cargar todas las imagenes de la app
 	cargaImagenes();
@@ -222,6 +227,12 @@ public void draw() {
 		break;
 case 7://pantalla ordenar mX
 		image(orderX, 0, 0);
+		for(int i=0;i<carritos.size();i++) {
+			if(carritos.get(i) instanceof ModelX ) {
+				((ModelX) carritos.get(i)).acomodarCaracteristicas();
+			}
+		}
+		
 		ocultarInputs();
 		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
 
@@ -229,11 +240,21 @@ case 7://pantalla ordenar mX
 		
 	case 8://pantalla ordenar mS
 		image(orderS, 0, 0);
+		for(int i=0;i<carritos.size();i++) {
+			if(carritos.get(i) instanceof ModelS ) {
+				((ModelS) carritos.get(i)).acomodarCaracteristicas();
+			}
+		}
 		ocultarInputs();
 		break;
 		
 	case 9://pantalla ordenar m3
 		image(order3, 0, 0);
+		for(int i=0;i<carritos.size();i++) {
+			if(carritos.get(i) instanceof Model3 ) {
+				((Model3) carritos.get(i)).acomodarCaracteristicas();
+			}
+		}
 		ocultarInputs();
 		break;
 		
@@ -366,6 +387,7 @@ public void mouseClicked() {
 	case 4://pantalla Home(modelX)
 		if(mouseX>105 && mouseX<310 && mouseY>802 && mouseY<842) {
 			pantalla=7;//pantalla de ordenar X
+			carritos.add(new ModelX("Long Range", "2.7s 0-60mph", "305 miles", "7 adults", "155 mph", "17''", "20'' or 22''", "$84,990", this, font4));
 		}if(mouseX>345 && mouseX<414 && mouseY>370 && mouseY<474) {
 			pantalla=5;//para pasar a modelS
 			ani2=true;
@@ -375,6 +397,10 @@ public void mouseClicked() {
 	case 5://pantalla modelS
 		if(mouseX>105 && mouseX<310 && mouseY>802 && mouseY<842) {
 			pantalla=8;//pantalla de ordenar S
+			carritos.add(new ModelS("Long Range", "2.4s 0-60mph", "348 miles", "5 adults", "163 mph", "17''", "19'' or 21''", "$79,990", this,font4));
+			for(int i=0; i<carritos.size();i++) {
+			System.out.println(carritos.get(i));
+			}
 		}if(mouseX>345 && mouseX<414 && mouseY>370 && mouseY<474) {
 			pantalla=6;//para pasar a model3
 			ani3=true;
@@ -386,6 +412,7 @@ public void mouseClicked() {
 	case 6://pantalla model3
 		if(mouseX>105 && mouseX<310 && mouseY>802 && mouseY<842) {
 			pantalla=9;//pantalla de ordenar3
+			carritos.add(new Model3("Long Range", "3.2s 0-60mph", "322 miles", "5 adults", "140 mph", "15''", "18''", "$39,990", this,font4));
 		}if(mouseX>0 && mouseX<68 && mouseY>370 && mouseY<474) {
 			pantalla=5;//para devolverse a modelS
 			

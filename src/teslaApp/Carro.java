@@ -10,7 +10,8 @@ public abstract class Carro {
 	private String wheels;
 	private String price;
 
-public Carro(String Acceleration,String Range,String Seats,String VMax,String Display,String Wheels,String Price) {
+public Carro(String Battery,String Acceleration,String Range,String Seats,String VMax,String Display,String Wheels,String Price) {
+	battery = Battery;
 	acceleration = Acceleration;
 	range = Range;
 	seats = Seats;
