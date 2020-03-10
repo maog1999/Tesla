@@ -38,6 +38,7 @@ int contador=1;
 int contador2=1;
 int contador3=1;
 int contador4=1;
+int contadorCompra=0;
 
 //variables de imagenes
 PImage pantalla1;
@@ -61,7 +62,14 @@ PImage thaS;
 PImage tha3;
 PImage passWr;
 PImage wronLog;
-
+PImage preX;
+PImage preS;
+PImage pre3;
+PImage ordB;
+PImage ordR;
+PImage x;
+PImage s;
+PImage tres;
 
 //variables botones
 int registrarse;
@@ -70,9 +78,14 @@ private PFont font;
 private PFont font2;
 private PFont font3;
 private PFont font4;
+private PFont font5;
+private PFont font6;
 boolean ani1 = false;
 boolean ani2 = false;
 boolean ani3 = false;
+boolean compraX = false;
+boolean compraS = false;
+boolean compra3 = false;
 
 
 	public static void main(String[] args) {
@@ -114,6 +127,8 @@ public void setup() {
 	font2 = createFont("Roboto-Medium.tff", 22);
 	font3 = createFont("Roboto-Regular.tff", 14);
 	font4 = createFont("Roboto-Light.tff", 18);	
+	font5 = createFont("Roboto-Regular.tff", 12);	
+	font6 = createFont("Roboto-Medium.tff", 16);
 	
 	//arreglos de informacion
 	usu = new ArrayList <Usuario>();
@@ -335,6 +350,159 @@ case 7://pantalla ordenar mX
 	case 21://pantalla grafica 3
 		
 		break;
+		
+	case 22://pantalla preX
+		image(preX, 0, 0);
+		textFont(font6);
+		text(cp5.get(Textfield.class, "name").getText() ,207,830);
+		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
+
+		ocultarInputs();
+		break;
+		
+	case 23://pantalla preS
+		image(preS, 0, 0);
+		textFont(font6);
+		text(cp5.get(Textfield.class, "name").getText() ,205,830);
+		ocultarInputs();
+		break;
+		
+	case 24://pantalla pre3
+		image(pre3, 0, 0);
+		textFont(font6);
+		text(cp5.get(Textfield.class, "name").getText() ,20,830);
+		ocultarInputs();
+		break;
+		
+	case 25://pantalla historialBlack
+		image(ordB, 0, 0);
+		if(compraX==true) {
+			fill(28,28,28);
+			noStroke();
+			rect(50,108,314,126);
+			//rect(50,78+(contadorCompra * 30),314,126);
+			fill(255);
+			image(x, 50, 140);
+			textFont(font5);
+			text("Modelo X",171,149);
+			text(cp5.get(Textfield.class, "name").getText() ,173,161);
+			text(cp5.get(Textfield.class, "email").getText() ,173,173);
+			text(cp5.get(Textfield.class, "adress").getText() ,173,185);
+			text("$84,990" ,316,227);	
+		}if(compraS==true) {
+			fill(28,28,28);
+			noStroke();
+			rect(50,108,314,126);
+			fill(255);
+			image(s, 49, 135);
+			textFont(font5);
+			text("Modelo S",171,149);
+			text(cp5.get(Textfield.class, "name").getText() ,173,161);
+			text(cp5.get(Textfield.class, "email").getText() ,173,173);
+			text(cp5.get(Textfield.class, "adress").getText() ,173,185);
+			text("$79,990" ,316,227);
+		}if(compra3==true) {
+			fill(28,28,28);
+			noStroke();
+			rect(50,108,314,126);
+			fill(255);
+			image(tres, 51, 140);
+			textFont(font5);
+			text("Modelo 3",171,149);
+			text(cp5.get(Textfield.class, "name").getText() ,173,161);
+			text(cp5.get(Textfield.class, "email").getText() ,173,173);
+			text(cp5.get(Textfield.class, "adress").getText() ,173,185);
+			text("$39,990" ,316,227);
+		}
+		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
+
+		ocultarInputs();
+		break;
+		
+	case 26://pantalla historialRed
+		image(ordR, 0, 0);
+		if(compraX==true) {
+			fill(157,20,20);
+			noStroke();
+			rect(50,108,314,126);
+			fill(255);
+			image(x, 50, 140);
+			textFont(font5);
+			text("Modelo X",171,149);
+			text(cp5.get(Textfield.class, "name").getText() ,173,161);
+			text(cp5.get(Textfield.class, "email").getText() ,173,173);
+			text(cp5.get(Textfield.class, "adress").getText() ,173,185);
+			text("$84,990" ,316,227);
+		}if(compraS==true) {
+			fill(157,20,20);
+			noStroke();
+			rect(50,108,314,126);
+			fill(255);
+			image(s, 49, 135);
+			textFont(font5);
+			text("Modelo S",171,149);
+			text(cp5.get(Textfield.class, "name").getText() ,173,161);
+			text(cp5.get(Textfield.class, "email").getText() ,173,173);
+			text(cp5.get(Textfield.class, "adress").getText() ,173,185);
+			text("$79,990" ,316,227);
+		}if(compra3==true) {
+			fill(157,20,20);
+			noStroke();
+			rect(50,108,314,126);
+			fill(255);
+			image(tres, 51, 140);
+			textFont(font5);
+			text("Modelo 3",171,149);
+			text(cp5.get(Textfield.class, "name").getText() ,173,161);
+			text(cp5.get(Textfield.class, "email").getText() ,173,173);
+			text(cp5.get(Textfield.class, "adress").getText() ,173,185);
+			text("$39,990" ,316,227);
+		}
+		ocultarInputs();
+		break;
+		
+	case 27://pantalla historialB2
+		image(ordB, 0, 0);
+		if(compraX==true) {
+			fill(28,28,28);
+			noStroke();
+			rect(50,108,314,126);
+			fill(255);
+			image(x, 50, 140);
+			textFont(font5);
+			text("Modelo X",171,149);
+			text(cp5.get(Textfield.class, "name").getText() ,173,161);
+			text(cp5.get(Textfield.class, "email").getText() ,173,173);
+			text(cp5.get(Textfield.class, "adress").getText() ,173,185);
+			text("$84,990" ,316,227);
+		}if(compraS==true) {
+			fill(28,28,28);
+			noStroke();
+			rect(50,108,314,126);
+			fill(255);
+			image(s, 49, 135);
+			textFont(font5);
+			text("Modelo S",171,149);
+			text(cp5.get(Textfield.class, "name").getText() ,173,161);
+			text(cp5.get(Textfield.class, "email").getText() ,173,173);
+			text(cp5.get(Textfield.class, "adress").getText() ,173,185);
+			text("$79,990" ,316,227);
+		}if(compra3==true) {
+			fill(28,28,28);
+			noStroke();
+			rect(50,108,314,126);
+			fill(255);
+			image(tres, 51, 140);
+			textFont(font5);
+			text("Modelo 3",171,149);
+			text(cp5.get(Textfield.class, "name").getText() ,173,161);
+			text(cp5.get(Textfield.class, "email").getText() ,173,173);
+			text(cp5.get(Textfield.class, "adress").getText() ,173,185);
+			text("$39,990" ,316,227);
+		}
+		ocultarInputs();
+		break;
+		
 	}
 }
 public void mouseClicked() {
@@ -391,6 +559,8 @@ public void mouseClicked() {
 		}if(mouseX>345 && mouseX<414 && mouseY>370 && mouseY<474) {
 			pantalla=5;//para pasar a modelS
 			ani2=true;
+		}if(mouseX>318 && mouseX<382 && mouseY>18 && mouseY<76) {
+			pantalla=22;//pantalla de preX
 		}
 		
 		break;
@@ -406,6 +576,8 @@ public void mouseClicked() {
 			ani3=true;
 		}if(mouseX>0 && mouseX<68 && mouseY>370 && mouseY<474) {
 			pantalla=4;//para devolverse a modelX
+		}	if(mouseX>318 && mouseX<382 && mouseY>18 && mouseY<76) {
+			pantalla=23;//pantalla de preS
 		}
 		
 		break;
@@ -415,7 +587,8 @@ public void mouseClicked() {
 			carritos.add(new Model3("Long Range", "3.2s 0-60mph", "322 miles", "5 adults", "140 mph", "15''", "18''", "$39,990", this,font4));
 		}if(mouseX>0 && mouseX<68 && mouseY>370 && mouseY<474) {
 			pantalla=5;//para devolverse a modelS
-			
+		}if(mouseX>318 && mouseX<382 && mouseY>18 && mouseY<76) {
+			pantalla=24;//pantalla de pre3
 		}
 		
 		break;
@@ -547,8 +720,11 @@ public void mouseClicked() {
 	case 13://pantalla pagoX
 		getInfoTarjeta();
 		if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
-			pantalla=16;
+			pantalla=16;//pantalla de agradecimientoX
+			compraX=true;
+			contadorCompra++;
 			mostrarInputs2();
+			limpiarInputs();
 			}if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
 			pantalla=7;
 			limpiarInputs();
@@ -558,8 +734,11 @@ public void mouseClicked() {
 	case 14://pantalla pagoS
 		getInfoTarjeta();
 		if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
-			pantalla=17;
+			pantalla=17;//pantalla de agradecimientoS
+			compraS=true;
+			contadorCompra++;
 			mostrarInputs2();
+			limpiarInputs();
 			}if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
 			pantalla=8;
 			limpiarInputs();
@@ -569,8 +748,11 @@ public void mouseClicked() {
 	case 15://pantalla pago3
 		getInfoTarjeta();
 		if(mouseX>0 && mouseX<414 && mouseY>817 && mouseY<896) {
-			pantalla=16;
+			pantalla=18;//pantalla de agradecimientoS
+			compra3=true;
+			contadorCompra++;
 			mostrarInputs2();
+			limpiarInputs();
 			}if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
 			pantalla=7;
 			limpiarInputs();
@@ -612,7 +794,48 @@ public void mouseClicked() {
 	case 21://pantalla grafica 3
 		
 		break;
-	
+		
+	case 22://pantalla preX
+		if(mouseX>354 && mouseX<414 && mouseY>10 && mouseY<68) {
+			pantalla=4;//pantalla home
+		}if(mouseX>130 && mouseX<414 && mouseY>103 && mouseY<163) {
+			pantalla=25;//pantalla historialBlack
+		}
+		break;
+		
+	case 23://pantalla preS
+		if(mouseX>354 && mouseX<414 && mouseY>10 && mouseY<68) {
+			pantalla=5;//pantalla home
+		}if(mouseX>130 && mouseX<414 && mouseY>103 && mouseY<163) {
+			pantalla=26;//pantalla historialRed
+		}
+		break;
+		
+	case 24://pantalla pre3
+		if(mouseX>354 && mouseX<414 && mouseY>10 && mouseY<68) {
+			pantalla=6;//pantalla home
+		}if(mouseX>130 && mouseX<414 && mouseY>103 && mouseY<163) {
+			pantalla=27;//pantalla historialBlack
+		}
+		break;
+		
+	case 25://pantalla historialBlack
+		if(mouseX>10 && mouseX<82 && mouseY>10 && mouseY<82) {
+			pantalla=22;//pantalla preX
+		}
+		break;
+		
+	case 26://pantalla historialRed
+		if(mouseX>10 && mouseX<82 && mouseY>10 && mouseY<82) {
+			pantalla=23;//pantalla preS
+		}
+		break;
+		
+	case 27://pantalla2 historialB
+		if(mouseX>10 && mouseX<82 && mouseY>10 && mouseY<82) {
+			pantalla=24;//pantalla pre3
+		}
+		break;
 	
 }
 	
@@ -639,7 +862,17 @@ public void cargaImagenes() {
 	tha3=loadImage("images/thank3.png");
 	passWr=loadImage("images/pantallaWrong.png");
 	wronLog=loadImage("images/wrongLog.png");
+	preX=loadImage("images/preX.png");
+	preS=loadImage("images/preS.png");
+	pre3=loadImage("images/pre3.png");
+	ordB=loadImage("images/orderB.png");
+	ordR=loadImage("images/orderR.png");
+	x=loadImage("images/x.png");
+	s=loadImage("images/s.png");
+	tres=loadImage("images/3.png");
 	
+	
+	//for para recargar las animaciones
 	for(int i=1;i<71;i++) {
 		intro[i]=loadImage("introVi/scene1"+" "+"("+i+").jpg");
 	}
