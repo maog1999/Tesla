@@ -25,7 +25,7 @@ public void acomodarCaracteristicas() {
 	appX.text(getAcceleration(),50,592);
 	appX.text(getRange(),50,678);
 	appX.text(getSeats(),50,764);
-	//Columba Der
+	//Columna Der
 	appX.text(getvMax(),261,506);
 	appX.text(getDisplay(),261,592);
 	appX.text(getWheels(),261,678);

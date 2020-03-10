@@ -20,6 +20,9 @@ PImage [] intro;
 PImage[] homeX;
 PImage [] homeS;
 PImage [] home3;
+PImage [] gMx;
+PImage [] gMs;
+PImage [] gM3;
 String textValue = "";
 String registro;
 String na;
@@ -38,6 +41,9 @@ int contador=1;
 int contador2=1;
 int contador3=1;
 int contador4=1;
+int contador5=1;
+int contador6=1;
+int contador7=1;
 int contadorCompra=0;
 
 //variables de imagenes
@@ -83,6 +89,9 @@ private PFont font6;
 boolean ani1 = false;
 boolean ani2 = false;
 boolean ani3 = false;
+boolean aniX = false;
+boolean aniS = false;
+boolean anim3 = false;
 boolean compraX = false;
 boolean compraS = false;
 boolean compra3 = false;
@@ -102,6 +111,9 @@ public void setup() {
 	homeX = new PImage[97];
 	homeS = new PImage[98];
 	home3 = new PImage[97];
+	gMx = new PImage[80];
+	gMs = new PImage[80];
+	gM3 = new PImage[80];
 	ensayo = new String [5];
 	tarjeta = new String [5];
 	
@@ -340,21 +352,45 @@ case 7://pantalla ordenar mX
 		break;
 	
 	case 19://pantalla grafica X
-		
+		if(aniX==true) {
+			image(gMx[contador5], 0, 0);
+			if(frameCount %2==0) {
+				contador5++;
+				if(contador5>77) {
+					contador5=77;
+				}
+			}
+			}
 		break;
 		
 	case 20://pantalla grafica S
-		
+		if(aniS==true) {
+			image(gMs[contador6], 0, 0);
+			if(frameCount %2==0) {
+				contador6++;
+				if(contador6>77) {
+					contador6=77;
+				}
+			}
+			}
 		break;
 		
 	case 21://pantalla grafica 3
-		
+		if(anim3==true) {
+			image(gM3[contador7], 0, 0);
+			if(frameCount %2==0) {
+				contador7++;
+				if(contador7>77) {
+					contador7=77;
+				}
+			}
+			}
 		break;
 		
 	case 22://pantalla preX
 		image(preX, 0, 0);
 		textFont(font6);
-		text(cp5.get(Textfield.class, "name").getText() ,207,830);
+		//text(cp5.get(Textfield.class, "name").getText() ,207,830);
 		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
 
 		ocultarInputs();
@@ -363,14 +399,14 @@ case 7://pantalla ordenar mX
 	case 23://pantalla preS
 		image(preS, 0, 0);
 		textFont(font6);
-		text(cp5.get(Textfield.class, "name").getText() ,205,830);
+		//text(cp5.get(Textfield.class, "name").getText() ,205,830);
 		ocultarInputs();
 		break;
 		
 	case 24://pantalla pre3
 		image(pre3, 0, 0);
 		textFont(font6);
-		text(cp5.get(Textfield.class, "name").getText() ,20,830);
+		//text(cp5.get(Textfield.class, "name").getText() ,20,830);
 		ocultarInputs();
 		break;
 		
@@ -559,6 +595,9 @@ public void mouseClicked() {
 		}if(mouseX>345 && mouseX<414 && mouseY>370 && mouseY<474) {
 			pantalla=5;//para pasar a modelS
 			ani2=true;
+			if(contador3==94) {
+				contador3=1;
+			}
 		}if(mouseX>318 && mouseX<382 && mouseY>18 && mouseY<76) {
 			pantalla=22;//pantalla de preX
 		}
@@ -574,8 +613,13 @@ public void mouseClicked() {
 		}if(mouseX>345 && mouseX<414 && mouseY>370 && mouseY<474) {
 			pantalla=6;//para pasar a model3
 			ani3=true;
+			if(contador4==93) {
+				contador4=1;
+			}
 		}if(mouseX>0 && mouseX<68 && mouseY>370 && mouseY<474) {
 			pantalla=4;//para devolverse a modelX
+			contador2=1;//para que la animacion vuelva 
+			ani1=true;
 		}	if(mouseX>318 && mouseX<382 && mouseY>18 && mouseY<76) {
 			pantalla=23;//pantalla de preS
 		}
@@ -587,6 +631,8 @@ public void mouseClicked() {
 			carritos.add(new Model3("Long Range", "3.2s 0-60mph", "322 miles", "5 adults", "140 mph", "15''", "18''", "$39,990", this,font4));
 		}if(mouseX>0 && mouseX<68 && mouseY>370 && mouseY<474) {
 			pantalla=5;//para devolverse a modelS
+			contador3=1;//para que la animacion vuelva 
+			ani2=true;
 		}if(mouseX>318 && mouseX<382 && mouseY>18 && mouseY<76) {
 			pantalla=24;//pantalla de pre3
 		}
@@ -692,16 +738,30 @@ public void mouseClicked() {
 	case 10://pantalla compararX
 		if(mouseX>103 && mouseX<312 && mouseY>808 && mouseY<846) {
 		pantalla=19;
+		aniX=true;
+		if(contador5==77) {
+			contador5=1;
+		}
 		}if(mouseX>12 && mouseX<76 && mouseY>12 && mouseY<85 || mouseX>116 && mouseX<298 && mouseY>16 && mouseY<72 ) {
 			pantalla=4;
+			if(contador5==77) {
+				contador5=1;
+			}
 		}
 		break;
 		
 	case 11://pantalla compararS
 		if(mouseX>103 && mouseX<312 && mouseY>808 && mouseY<846) {
 			pantalla=20;
+			aniS=true;
+			if(contador6==77) {
+				contador6=1;
+			}
 		}if(mouseX>12 && mouseX<76 && mouseY>12 && mouseY<85) {
 				pantalla=8;
+				if(contador5==77) {
+					contador5=1;
+				}
 			}if(mouseX>116 && mouseX<298 && mouseY>16 && mouseY<72) {
 				pantalla=4;
 			}
@@ -710,8 +770,15 @@ public void mouseClicked() {
 	case 12://pantalla comparar3
 		if(mouseX>103 && mouseX<312 && mouseY>808 && mouseY<846) {
 			pantalla=21;
+			anim3=true;
+			if(contador7==77) {
+				contador7=1;
+			}
 			}if(mouseX>12 && mouseX<76 && mouseY>12 && mouseY<85) {
 				pantalla=9;
+				if(contador7==77) {
+					contador7=1;
+				}
 			}if(mouseX>116 && mouseX<298 && mouseY>16 && mouseY<72) {
 				pantalla=4;
 			}
@@ -724,7 +791,6 @@ public void mouseClicked() {
 			compraX=true;
 			contadorCompra++;
 			mostrarInputs2();
-			limpiarInputs();
 			}if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
 			pantalla=7;
 			limpiarInputs();
@@ -738,7 +804,6 @@ public void mouseClicked() {
 			compraS=true;
 			contadorCompra++;
 			mostrarInputs2();
-			limpiarInputs();
 			}if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
 			pantalla=8;
 			limpiarInputs();
@@ -752,7 +817,6 @@ public void mouseClicked() {
 			compra3=true;
 			contadorCompra++;
 			mostrarInputs2();
-			limpiarInputs();
 			}if(mouseX>36 && mouseX<75 && mouseY>16 && mouseY<66) {
 			pantalla=7;
 			limpiarInputs();
@@ -784,15 +848,27 @@ public void mouseClicked() {
 		break;
 	
 	case 19://pantalla grafica X
-		
+		if(mouseX>105 && mouseX<310 && mouseY>802 && mouseY<842) {
+			pantalla=7;//pantalla de ordenar X
+		}if(mouseX>12 && mouseX<76 && mouseY>12 && mouseY<85 || mouseX>116 && mouseX<298 && mouseY>16 && mouseY<72 ) {
+			pantalla=10;//pantalla comparar X
+		}
 		break;
 		
 	case 20://pantalla grafica S
-		
+		if(mouseX>105 && mouseX<310 && mouseY>802 && mouseY<842) {
+			pantalla=8;//pantalla de ordenar S
+		}if(mouseX>12 && mouseX<76 && mouseY>12 && mouseY<85 || mouseX>116 && mouseX<298 && mouseY>16 && mouseY<72 ) {
+			pantalla=11;//pantalla comparar S
+		}
 		break;
 		
 	case 21://pantalla grafica 3
-		
+		if(mouseX>105 && mouseX<310 && mouseY>802 && mouseY<842) {
+			pantalla=9;//pantalla de ordenar 3
+		}if(mouseX>12 && mouseX<76 && mouseY>12 && mouseY<85 || mouseX>116 && mouseX<298 && mouseY>16 && mouseY<72 ) {
+			pantalla=12;//pantalla comparar 3
+		}
 		break;
 		
 	case 22://pantalla preX
@@ -800,6 +876,9 @@ public void mouseClicked() {
 			pantalla=4;//pantalla home
 		}if(mouseX>130 && mouseX<414 && mouseY>103 && mouseY<163) {
 			pantalla=25;//pantalla historialBlack
+		}if(mouseX>196 && mouseX<276 && mouseY>800 && mouseY<850) {
+			pantalla=0;//pantalla inicio inicio
+			limpiarInputs();
 		}
 		break;
 		
@@ -808,7 +887,11 @@ public void mouseClicked() {
 			pantalla=5;//pantalla home
 		}if(mouseX>130 && mouseX<414 && mouseY>103 && mouseY<163) {
 			pantalla=26;//pantalla historialRed
+		}if(mouseX>196 && mouseX<276 && mouseY>800 && mouseY<850) {
+			pantalla=0;//pantalla inicio inicio
+			limpiarInputs();
 		}
+		
 		break;
 		
 	case 24://pantalla pre3
@@ -816,6 +899,9 @@ public void mouseClicked() {
 			pantalla=6;//pantalla home
 		}if(mouseX>130 && mouseX<414 && mouseY>103 && mouseY<163) {
 			pantalla=27;//pantalla historialBlack
+		}if(mouseX>196 && mouseX<276 && mouseY>800 && mouseY<850) {
+			pantalla=0;//pantalla inicio inicio
+			limpiarInputs();
 		}
 		break;
 		
@@ -887,6 +973,16 @@ public void cargaImagenes() {
 	
 	for(int i=1;i<96;i++) {
 		home3[i]=loadImage("m3/sce"+" "+"("+i+").jpg");
+	}
+	
+	for(int i=1;i<80;i++) {
+		gMx[i]=loadImage("graMx/gMx"+" "+"("+i+").jpg");
+	}
+	for(int i=1;i<80;i++) {
+		gMs[i]=loadImage("graMs/gMs"+" "+"("+i+").jpg");
+	}
+	for(int i=1;i<80;i++) {
+		gM3[i]=loadImage("graM3/gM3"+" "+"("+i+").jpg");
 	}
 }
 public void mostrarInputs() {
