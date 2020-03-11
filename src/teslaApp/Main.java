@@ -377,7 +377,7 @@ case 7://pantalla ordenar mX
 		image(preX, 0, 0);
 		textFont(font6);
 		//text(cp5.get(Textfield.class, "name").getText() ,207,830);
-		text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
+		//text("X: "+mouseX+ " Y: "+mouseY,mouseX,mouseY);
 
 		ocultarInputs();
 		break;
@@ -661,7 +661,7 @@ public void mouseClicked() {
 			
 			cp5.addTextfield("numberCard")
 			.setPosition(50,362)
-			.setSize(200,40)
+			.setSize(188,40)
 			.setFocus(false)
 			.setFont(font)
 			.setColor(color(255))
